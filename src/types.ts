@@ -13,17 +13,38 @@ export class GiantNumber {
         return toHumanReadable(this.amount, this.kpow);
     }
 
-    subtractGN(gn: GiantNumber) {
-        return this.subtract(gn.amount, gn.kpow);
+    sub(gn: GiantNumber) {
+        this.amount -= gn.amount; // TODO: Implement!
+        return this;
     }
 
-    subtract(amount: number, kpow: number = 0): boolean {
-        // TODO: implement lol
-        if (this.amount < amount) {
-            return false;
-        }
-        this.amount -= amount;
-        return true;
+    gt(gn: GiantNumber) {
+        return this.amount > gn.amount; // TODO: Implement!
+    }
+
+    ge(gn: GiantNumber) {
+        return this.gt(gn) || this.eq(gn);
+    }
+
+    lt(gn: GiantNumber) {
+        return !(this.gt(gn) || this.eq(gn));
+    }
+
+    eq(gn: GiantNumber) {
+        return this.amount === gn.amount; // TODO: Implement!
+    }
+
+    add(gn: GiantNumber) {
+        this.amount += gn.amount; // TODO: Implement!
+        return this;
+    }
+
+    cmp(gn: GiantNumber) {
+        return this.gt(gn) ? 1 : this.eq(gn) ? 0 : -1;
+    }
+
+    toString() {
+        return this.toHumanReadable();
     }
 }
 
@@ -38,37 +59,34 @@ export class Currency extends GiantNumber {
     }
 }
 
-export class CreatureType {
+export class Creature {
     name: string;
     icon: string;
+    health: GiantNumber;
+    damage: GiantNumber;
+    speed: GiantNumber;
+    price: GiantNumber;
+    count: GiantNumber;
 
-    constructor(name: string, icon: string) {
+    constructor(name: string, icon: string, health: GiantNumber, damage: GiantNumber, speed: GiantNumber, price: GiantNumber, count: GiantNumber) {
         this.name = name;
         this.icon = icon;
-    }
-}
-
-export class CreatureStats {
-    health: number;
-    damage: number;
-    speed: number;
-
-    constructor(health: number, damage: number, speed: number) {
         this.health = health;
         this.damage = damage;
         this.speed = speed;
-    }
-}
-
-export class CreatureShopEntry extends CreatureStats {
-    price: number;
-
-    constructor(health: number, damage: number, speed: number, price: number) {
-        super(health, damage, speed);
         this.price = price;
+        this.count = count;
     }
 
-    toStats(): CreatureStats {
-        return new CreatureStats(this.health, this.damage, this.speed);
+    merge(other: Creature) {
+        other.health.gt(this.health) && (this.health = other.health);
+        other.damage.gt(this.damage) && (this.damage = other.damage);
+        other.speed.gt(this.speed) && (this.speed = other.speed);
+        other.price.gt(this.price) && (this.price = other.price);
+        this.count.add(other.count);
+    }
+
+    getOneVOneDamage() {
+        return this.damage;
     }
 }

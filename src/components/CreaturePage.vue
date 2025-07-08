@@ -7,6 +7,7 @@ import CraftingSkillIcon from '@/assets/icons/80px-Crafting_Skill.webp';
 import { ref } from 'vue';
 import TabCreatures from './TabCreatures.vue';
 import TabShop from './TabShop.vue';
+import TabOneVOne from './TabOneVOne.vue';
 
 const active_tab = ref(0);
 
@@ -35,6 +36,7 @@ defineProps<{}>()
     <div class="content">
       <TabCreatures v-if="active_tab === 0" />
       <TabShop v-else-if="active_tab === 1" />
+      <TabOneVOne v-else-if="active_tab === 2" />
       <span v-else>NOT IMPLEMENTED</span>
     </div>
   </div>
@@ -48,24 +50,20 @@ div.page {
 
   div.tabs {
     display: flex;
-    border: .125rem solid rgb(var(--section-color));
-    border-radius: .25rem .25rem 0 0;
-    border-bottom: 0;
     overflow-x: auto;
+    margin: 0 .25rem;
 
     button.tab {
       padding: .5rem .5rem .25rem .5rem;
-      border-radius: .25rem .25rem 0 0;
+      border-radius: 0;
+      background-color: rgb(var(--background-color));
 
-      &:hover {
+      &.active {
         background-color: rgb(var(--section-color));
       }
 
-      &.active {
-        padding: .375rem;
-        padding-bottom: .25rem;
-        border: .125rem solid rgb(var(--hover-color));
-        border-bottom: 0;
+      &:hover {
+        background-color: rgb(var(--hover-color));
       }
 
       img {
@@ -76,7 +74,7 @@ div.page {
 
   div.content {
     border-radius: .25rem;
-    border: .125rem solid rgb(var(--hover-color));
+    border: .125rem solid rgb(var(--section-color));
     padding: .5rem;
     width: 100%;
   }

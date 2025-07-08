@@ -1,7 +1,7 @@
 @import './base.css';
 
 button {
-  background: transparent;
+  background-color: rgb(var(--border-color));
   color: rgb(var(--text-color));
   font-size: 1rem;
   line-height: 1.6;
@@ -13,7 +13,13 @@ button {
   border-radius: .25rem;
 
   &:hover {
-    background-color: rgb(var(--section-color));
+    background-color: rgb(var(--primary-color));
+  }
+
+  &:disabled {
+    color: rgb(var(--text-disabled-color));
+    background-color: rgb(var(--background-color));
+    cursor: not-allowed;
   }
 }
 
@@ -45,4 +51,12 @@ table {
       }
     }
   }
+}
+
+.increase {
+  color: rgb(var(--increase-color)) !important;
+}
+
+img {
+  object-fit: contain;
 }

@@ -2,7 +2,6 @@
 import Money from '@/components/Money.vue'
 import { money } from './store';
 import CreaturePage from './components/CreaturePage.vue';
-import FightPage from './components/FightPage.vue';
 </script>
 
 <template>
@@ -14,7 +13,6 @@ import FightPage from './components/FightPage.vue';
 
     <main>
       <CreaturePage/>
-      <FightPage/>
     </main>
   </div>
 </template>
@@ -33,15 +31,6 @@ div.container {
     gap: .25rem;
     flex-wrap: wrap;
     border-bottom: .125rem solid rgb(var(--section-color));
-  }
-
-  main {
-    display: flex;
-    gap: .5rem;
-
-    @media (max-width: 56rem) {
-      flex-direction: column;
-    }
   }
 }
 </style>

@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import type { CreatureType } from '@/types';
-import Image from './Image.vue';
+import type { Creature } from '@/types';
 
 const emit = defineEmits(['click'])
 defineProps<{
-  creature: CreatureType,
-  amount: number|string,
+  creature: Creature,
   active: boolean,
 }>()
 </script>
@@ -15,8 +13,8 @@ defineProps<{
     :class="`creature-box ${active && 'active'}`"
     @click="() => emit('click')"
   >
-    <Image :src="creature.icon" size="3rem" />
-    <span class="amount">{{ amount }}</span>
+    <img :src="creature.icon"/>
+    <span class="amount">{{ creature.count }}</span>
     <span class="hover">{{ creature.name }}</span>
   </button>
 </template>
@@ -29,6 +27,11 @@ button.creature-box {
   position: relative;
   height: fit-content;
   width: fit-content;
+
+  img {
+    width: 3rem;
+    height: 3rem;
+  }
 
   span.hover {
     display: none;
@@ -51,9 +54,10 @@ button.creature-box {
       background-color: rgb(var(--background-color));
       border-radius: .25rem;
       padding: .25rem .5rem;
-      top: -80%;
+      top: -35%;
       left: 50%;
-      transform: translate(-50%);
+      transform: translate(-50%, -50%);
+      z-index: 2;
     }
   }
 

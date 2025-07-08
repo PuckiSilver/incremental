@@ -1,5 +1,5 @@
 import { reactive } from "vue";
-import { CreatureShopEntry, CreatureStats, CreatureType, Currency } from "./types";
+import { Creature, Currency, GiantNumber } from "./types";
 import ElementIcon from '@/assets/money/228px-Element.webp';
 import GoldenNuggetIcon from '@/assets/money/228px-Golden_Nugget.webp';
 import CompyIcon from '@/assets/creatures/compy.webp';
@@ -12,21 +12,21 @@ export const money = reactive({
 });
 
 export const creatures = reactive([
-  [new CreatureStats(5, 2, 1), new CreatureStats(2, 4, 2), new CreatureStats(1, 3, 8)],
-  [new CreatureStats(5, 4, 3)],
-  [],
+  new Creature('Compy', CompyIcon, new GiantNumber(10), new GiantNumber(10), new GiantNumber(10), new GiantNumber(50), new GiantNumber(1)),
 ])
 
 export const shop = reactive([
-  [new CreatureShopEntry(5, 2, 1, 276), new CreatureShopEntry(2, 4, 2, 123), new CreatureShopEntry(1, 3, 8, 333)],
-  [new CreatureShopEntry(5, 4, 3, 476)],
-  [new CreatureShopEntry(1, 8, 7, 599)],
+  new Creature('Compy', CompyIcon, new GiantNumber(8), new GiantNumber(8), new GiantNumber(14), new GiantNumber(50), new GiantNumber(1)),
+  new Creature('Dilophosaur', DilophosaurIcon, new GiantNumber(12), new GiantNumber(18), new GiantNumber(10), new GiantNumber(120), new GiantNumber(1)),
+  new Creature('Dilophosaur', DilophosaurIcon, new GiantNumber(15), new GiantNumber(15), new GiantNumber(11), new GiantNumber(123), new GiantNumber(1)),
+  new Creature('Raptor', RaptorIcon, new GiantNumber(20), new GiantNumber(19), new GiantNumber(17), new GiantNumber(1000000000000), new GiantNumber(1)),
+  new Creature('Raptor', RaptorIcon, new GiantNumber(20), new GiantNumber(19), new GiantNumber(17), new GiantNumber(1000000000000), new GiantNumber(1)),
 ])
 
-export const creatureTypes = [
-    new CreatureType('Compy', CompyIcon),
-    new CreatureType('Dilophosaur', DilophosaurIcon),
-    new CreatureType('Raptor', RaptorIcon),
-]
+export const shopEvents = reactive([
+  new Creature('Raptor', RaptorIcon, new GiantNumber(200), new GiantNumber(109), new GiantNumber(170), new GiantNumber(123467324000060), new GiantNumber(1)),
+  new Creature('Dilophosaur', DilophosaurIcon, new GiantNumber(1), new GiantNumber(999), new GiantNumber(1), new GiantNumber(1), new GiantNumber(1)),
+  new Creature('Dilophosaur', DilophosaurIcon, new GiantNumber(1), new GiantNumber(999), new GiantNumber(1), new GiantNumber(12), new GiantNumber(1)),
+])
 
 export const progress = reactive({});
